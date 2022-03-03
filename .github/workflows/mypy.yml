@@ -1,0 +1,27 @@
+name: mypy
+
+on:
+  pull_request:
+    branchs:
+      - main
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  mypy:
+    name: Run mypy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-versions: [3.6, 3.7, 3.8, 3.9]
+      steps:
+        - name: checkout
+          uses: actions/checkout@v2
+        - name: python set up ${{ matrix.python-versions }}
+          uses: actions/setup-python@v1
+        - name: install mypy
+          run: pip3 install mypy
+        - name: run mypy
+          run: python3 -m mypy .

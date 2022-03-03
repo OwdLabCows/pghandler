@@ -1,0 +1,10 @@
+.vscode
+__pycache__
+.devcontainer
+.mypy_cache
+.pytest_cache
+.venv
+pghandler/__pycache__
+tests/__pycache__
+tests/.pytest_cache
+tests/.env
