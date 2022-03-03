@@ -17,6 +17,9 @@ jobs:
       matrix:
         python-versions: [3.6, 3.7, 3.8, 3.9]
       steps:
+        - name: set up PostgreSQL Docker
+          run: |
+            cd tests && docker-compose up -d
         - name: checkout
           uses: actions/checkout@v2
         - name: python set up ${{ matrix.python-versions }}
