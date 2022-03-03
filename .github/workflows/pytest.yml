@@ -17,10 +17,10 @@ jobs:
       matrix:
         python-versions: [3.6, 3.7, 3.8, 3.9]
     steps:
-      - name: set up PostgreSQL Docker
-        run: cd ${{ github.workspace }}/tests && docker-compose up -d
       - name: checkout
         uses: actions/checkout@v2
+      - name: set up PostgreSQL Docker
+        run: cd ${{ github.workspace }}/tests && docker-compose up -d
       - name: python set up ${{ matrix.python-versions }}
         uses: actions/setup-python@v1
       - name: install pytest and pytest-dotenv
