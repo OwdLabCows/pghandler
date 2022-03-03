@@ -27,4 +27,6 @@ jobs:
         - name: install pytest and pytest-dotenv
           run: pip3 install pytest pytest-dotenv
         - name: run pytest
+          env:
+            DOCKER_HOSTIP: localhost
           run: python3 -m pytest tests
