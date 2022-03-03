@@ -18,15 +18,16 @@ jobs:
         python-versions: [3.6, 3.7, 3.8, 3.9]
     steps:
       - name: set up PostgreSQL Docker
-        run: |
-          cd tests && docker-compose up -d
+        run: cd ${{ github.workspace }}/tests && docker-compose up -d
       - name: checkout
         uses: actions/checkout@v2
       - name: python set up ${{ matrix.python-versions }}
         uses: actions/setup-python@v1
       - name: install pytest and pytest-dotenv
         run: pip3 install pytest pytest-dotenv
+      - name: install lib in requirements.txt
+        run: pip3 install -r requirements.txt
       - name: run pytest
         env:
           DOCKER_HOSTIP: localhost
-        run: python3 -m pytest tests
+        run: cd ${{ github.workspace }} && python3 -m pytest tests
