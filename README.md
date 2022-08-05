@@ -95,5 +95,16 @@ my_postgres = PGHandler(
 
 example
 ```python
-my_postgres.execute_query(query="insert into table_foo (comment) values ('foo') ;", fetch_all=True)
+my_postgres.execute_query(query="insert into table_foo (comment) values ('foo') ;", commit=True)
+
+my_postgres.execute_query(
+    query="insert into table_bar (col1, col2, col3) valuues %s", 
+    commit=True, 
+    boost_type=BoostType.VALUES,
+    param_list=[
+        ["value1 for col1", "value1 for col2", "value1 for col3"],
+        ["value2 for col1", "value2 for col2", "value2 for col3"],
+        ["value3 for col1", "value3 for col2", "value3 for col3"]
+    ]
+)
 ```
